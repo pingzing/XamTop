@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Plugin.DesktopTrayIcon</id>
-    <version>0.1.5</version>
+    <version>0.1.6</version>
     <title>Desktop Tray Icon plugin for Xamarin.Forms. Supports WPF and macOS.</title>
     <authors>Neil McAlister</authors>
     <owners>PingZing</owners>
