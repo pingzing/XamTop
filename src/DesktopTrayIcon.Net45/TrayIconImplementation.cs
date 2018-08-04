@@ -29,7 +29,7 @@ namespace DesktopTrayIcon
         }
 
         private string _iconUri;
-        public string IconUri
+        public string IconPath
         {
             get => _iconUri;
             set

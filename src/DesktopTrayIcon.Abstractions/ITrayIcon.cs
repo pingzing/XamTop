@@ -6,9 +6,10 @@ namespace DesktopTrayIcon.Abstractions
     public interface ITrayIcon
     {
         /// <summary>
-        /// URI to icon to display in the system tray. Should lead to a .ico file on Windows, and a .png file on macOS.
+        /// URI to icon to display in the system tray. Should lead to a .ico file on Windows, or
+        /// an image name in an Asset Bundle on macOS.
         /// </summary>
-        string IconUri { get; set; }
+        string IconPath { get; set; }
 
         /// <summary>
         /// Tooltip to display when the user hovers over the tray icon.
