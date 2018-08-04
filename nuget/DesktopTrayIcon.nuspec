@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Plugin.DesktopTrayIcon</id>
-    <version>0.1.4</version>
+    <version>0.1.5</version>
     <title>Desktop Tray Icon plugin for Xamarin.Forms. Supports WPF and macOS.</title>
     <authors>Neil McAlister</authors>
     <owners>PingZing</owners>
@@ -26,9 +26,9 @@
 
   <files>
     <!--Core-->
-    <file src="DesktopTrayIcon\bin\Release\netstandard1.0\DesktropTrayIcon.*" target="lib\netstandard1.0"/>
+    <file src="..\src\DesktopTrayIcon\bin\Release\netstandard1.0\DesktropTrayIcon.*" target="lib\netstandard1.0"/>
     
     <!--Xamarin.WPF (aka Net 4.5)-->
-    <file src="DesktopTrayIcon.Net45\bin\Release\DesktopTrayIcon.*" target="lib\net45"/>
+    <file src="..\src\\DesktopTrayIcon.Net45\bin\Release\DesktopTrayIcon.*" target="lib\net45"/>
   </files>
 </package>

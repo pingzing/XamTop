@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopTrayIcon.Net45", "De
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E624597-1E0F-4F1E-934F-78FEE2C86433}"
 	ProjectSection(SolutionItems) = preProject
-		DesktopTrayIcon.nuspec = DesktopTrayIcon.nuspec
+		..\nuget\DesktopTrayIcon.nuspec = ..\nuget\DesktopTrayIcon.nuspec
 	EndProjectSection
 EndProject
 Global
