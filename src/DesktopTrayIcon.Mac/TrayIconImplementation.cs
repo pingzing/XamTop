@@ -16,15 +16,17 @@ namespace DesktopTrayIcon.Mac
             _trayIcon = bar.CreateStatusItem(NSStatusItemLength.Square);
         }
 
-        public string IconUri 
+        private string _iconPath;
+        public string IconPath 
         {
-            get 
-            {
-                
-            }
+            get => _iconPath;
             set 
             {
-                
+                _iconPath = value;
+                NSImage icon = NSImage.ImageNamed(value);
+                icon.Template = true;
+                _trayIcon.Image = icon;
+                _trayIcon.HighlightMode = true;
             }
         }
 

@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
@@ -15,6 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopTrayIcon.Mac", "DesktopTrayIcon.Mac\DesktopTrayIcon.Mac.csproj", "{6F9B06EC-AA95-4276-B3F1-3F54A3BFEE48}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{4E96B5C8-6B03-413E-8DEF-5AF5F9EAE24A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamTrayIcon.Core", "..\examples\XamTrayIcon\XamTrayIcon.Core.csproj", "{9270924B-C438-4503-88F3-2E80C27D86FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamTrayIcon.WPF", "..\examples\XamTrayIcon.WPF\XamTrayIcon.WPF.csproj", "{00592CEF-B71F-45F3-8A10-A45CC0C4EC63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,9 +43,21 @@ Global
 		{6F9B06EC-AA95-4276-B3F1-3F54A3BFEE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F9B06EC-AA95-4276-B3F1-3F54A3BFEE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F9B06EC-AA95-4276-B3F1-3F54A3BFEE48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9270924B-C438-4503-88F3-2E80C27D86FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9270924B-C438-4503-88F3-2E80C27D86FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9270924B-C438-4503-88F3-2E80C27D86FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9270924B-C438-4503-88F3-2E80C27D86FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9270924B-C438-4503-88F3-2E80C27D86FD} = {4E96B5C8-6B03-413E-8DEF-5AF5F9EAE24A}
+		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63} = {4E96B5C8-6B03-413E-8DEF-5AF5F9EAE24A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F76678FE-AB21-42C4-8B1E-83386DA512B2}
