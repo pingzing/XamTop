@@ -14,34 +14,30 @@ namespace XamTrayIcon.Core
         public MainPage()
         {
             InitializeComponent();
-            if (Device.RuntimePlatform == Device.WPF)
-            {
-                DesktopTrayIcon.Icon.Current.IconPath = Environment.CurrentDirectory + "/Assets/trayicon.ico";
-            }                        
-
-            DesktopTrayIcon.Icon.Current.ContextMenuItems = new ITrayMenuItem[]
-            {
-                new TrayMenuButton { Label = "Show debug message", Clicked = (o, s) => Debug.WriteLine("Debug message!") },
-                new TrayMenuButton { Label = "Close", Clicked = (o2, s2) => Debug.WriteLine("I'll implement close later.") }
-            };
-            DesktopTrayIcon.Icon.Current.TrayTooltip = "XamTrayIcon";
-            DesktopTrayIcon.Icon.Current.Show();
-            DesktopTrayIcon.Icon.Current.Click += Current_Click;
         }
 
-        private void Current_Click(object sender, EventArgs e)
+        public void ShowIconButton_Clicked(object sender, EventArgs e)
         {
-            DesktopTrayIcon.Icon.Current.ShowContextMenu();
+            ((App)App.Current).TrayIcon.Show();
         }
 
-        private void HideIconButton_Clicked(object sender, EventArgs e)
+        public void HideIconButton_Clicked(object sender, EventArgs e)
         {
-            DesktopTrayIcon.Icon.Current.Hide();
+            ((App)App.Current).TrayIcon.Hide();
         }
 
-        private void ShowIconButton_Clicked(object sender, EventArgs e)
+        public void ShowContextMenuButton_Clicked(object sender, EventArgs e)
         {
-            DesktopTrayIcon.Icon.Current.Show();
+            ((App)App.Current).TrayIcon.ShowContextMenu();
+            Device.StartTimer(TimeSpan.FromSeconds(3), () => {
+                ((App)App.Current).TrayIcon.HideContextMenu();
+                return true;
+            });
+        }
+
+        public void HideContextMenuButton_Clicked(object sender, EventArgs e)
+        {
+            
         }
     }
 }
