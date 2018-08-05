@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <!--Target WPF and MacOS -->
-    <TargetFrameworks>netstandard1.0;net45;Xamarin.Mac20</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard2.0;net45;Xamarin.Mac20</TargetFrameworks>
 
     <AssemblyName>DesktopTrayIcon</AssemblyName>
     <RootNamespace>DesktopTrayIcon</RootNamespace>
@@ -39,11 +39,7 @@
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
     <Compile Include="**\*.Mac.cs" />    
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Shared\TrayIcon.Shared.cs" />
-  </ItemGroup>    
+  </ItemGroup>  
 
   <ItemGroup>
     <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
