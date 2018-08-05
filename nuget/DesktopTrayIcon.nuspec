@@ -21,6 +21,9 @@
       <group targetFramework="net45">
         <dependency id="System.Collections.Immutable" version="1.5.0"/>
       </group>
+      <group targetFramework="xamarinmac20">
+        <dependency id="System.Collections.Immutable" version="1.5.0"/>
+      </group>
     </dependencies>
   </metadata>
 
