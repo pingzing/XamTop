@@ -15,11 +15,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopTrayIcon.Mac", "DesktopTrayIcon.Mac\DesktopTrayIcon.Mac.csproj", "{6F9B06EC-AA95-4276-B3F1-3F54A3BFEE48}"
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{4E96B5C8-6B03-413E-8DEF-5AF5F9EAE24A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamTrayIcon.Core", "..\examples\XamTrayIcon\XamTrayIcon.Core.csproj", "{9270924B-C438-4503-88F3-2E80C27D86FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamTrayIcon.Core", "..\examples\XamTrayIcon\XamTrayIcon.Core.csproj", "{9270924B-C438-4503-88F3-2E80C27D86FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamTrayIcon.WPF", "..\examples\XamTrayIcon.WPF\XamTrayIcon.WPF.csproj", "{00592CEF-B71F-45F3-8A10-A45CC0C4EC63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9B2E0951-D4C3-45AA-8FEF-F5311C3452E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamTrayIcon.Mac", "..\examples\XamTrayIcon.Mac\XamTrayIcon.Mac.csproj", "{763250FC-24C9-4AA2-A6E6-A326D65E1A8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,13 +54,18 @@ Global
 		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{763250FC-24C9-4AA2-A6E6-A326D65E1A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{763250FC-24C9-4AA2-A6E6-A326D65E1A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{763250FC-24C9-4AA2-A6E6-A326D65E1A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{763250FC-24C9-4AA2-A6E6-A326D65E1A8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9270924B-C438-4503-88F3-2E80C27D86FD} = {4E96B5C8-6B03-413E-8DEF-5AF5F9EAE24A}
-		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63} = {4E96B5C8-6B03-413E-8DEF-5AF5F9EAE24A}
+		{9270924B-C438-4503-88F3-2E80C27D86FD} = {9B2E0951-D4C3-45AA-8FEF-F5311C3452E5}
+		{00592CEF-B71F-45F3-8A10-A45CC0C4EC63} = {9B2E0951-D4C3-45AA-8FEF-F5311C3452E5}
+		{763250FC-24C9-4AA2-A6E6-A326D65E1A8F} = {9B2E0951-D4C3-45AA-8FEF-F5311C3452E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F76678FE-AB21-42C4-8B1E-83386DA512B2}
