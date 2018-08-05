@@ -1,12 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <!--Target WPF and MacOS -->
+    <TargetFrameworks>netstandard1.0;net45;Xamarin.Mac20</TargetFrameworks>
+
+    <AssemblyName>DesktopTrayIcon</AssemblyName>
+    <RootNamespace>DesktopTrayIcon</RootNamespace>
+
+    <!--Manually include files, rather than implicitly-->
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    
+    <!--Bundle debugging symbols into the resulting dll and nuget package.-->
+    <AllowedOutputxtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputxtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DesktopTrayIcon.Abstractions\DesktopTrayIcon.Abstractions.csproj" />    
+  <!-- Define what happens on build and release -->
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <DebugType>pdbonly</DebugType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>    
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />             
+    <Compile Include="**\*.Shared.cs" />
   </ItemGroup>
 
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net45')) ">
+    <Compile Include="**\*.WPF.cs" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
+    <Compile Include="**\*.Mac.cs" />    
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Shared\TrayIcon.Shared.cs" />
+  </ItemGroup>    
+
+  <ItemGroup>
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
+  </ItemGroup>      
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

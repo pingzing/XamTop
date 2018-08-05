@@ -5,9 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using DesktopTrayIcon.Abstractions;
-using DesktopTrayIcon.Net45;
 
-// In the same namespace as the core plugin class, so the TrayIconImplementation() constructor is visible to it.
 namespace DesktopTrayIcon
 {
     public class TrayIconImplementation : ITrayIcon

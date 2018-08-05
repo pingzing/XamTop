@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using DesktopTrayIcon.Abstractions;
 using AppKit;
 using System.Collections.Immutable;
 using System.Linq;
+using DesktopTrayIcon.Abstractions;
 
 namespace DesktopTrayIcon
 {
