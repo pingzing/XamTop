@@ -27,6 +27,9 @@
   <files>
     <!--Core-->
     <file src="..\src\DesktopTrayIcon\bin\Release\netstandard1.0\DesktropTrayIcon.*" target="lib\netstandard1.0"/>
+
+    <!--Xamarin.Mac-->
+    <file src="..\src\DesktopTrayIcon.Mac\bin\Release\DesktopTrayIcon.*" target="lib\xamarinmac20"/>
     
     <!--Xamarin.WPF (aka Net 4.5)-->
     <file src="..\src\\DesktopTrayIcon.Net45\bin\Release\DesktopTrayIcon.*" target="lib\net45"/>
