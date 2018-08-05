@@ -31,7 +31,7 @@ namespace XamTrayIcon.Core
             ((App)App.Current).TrayIcon.ShowContextMenu();
             Device.StartTimer(TimeSpan.FromSeconds(3), () => {
                 ((App)App.Current).TrayIcon.HideContextMenu();
-                return true;
+                return false;
             });
         }
 

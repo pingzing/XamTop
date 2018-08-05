@@ -5,11 +5,12 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using DesktopTrayIcon.Abstractions;
+using DesktopTrayIcon.Net45;
 
 // In the same namespace as the core plugin class, so the TrayIconImplementation() constructor is visible to it.
 namespace DesktopTrayIcon
 {
-    internal class TrayIconImplementation : ITrayIcon
+    public class TrayIconImplementation : ITrayIcon
     {
         private NotifyIcon _trayIcon = new NotifyIcon
         {
@@ -93,6 +94,9 @@ namespace DesktopTrayIcon
         public void HideContextMenu()
         {
             _trayIcon.ContextMenuStrip.Hide();
+
+            // The status tray sometimes holds onto stale icons until they're moused over, so let's force it to clear.
+            Win32Interop.RefreshTrayArea(); 
         }
     }
 }

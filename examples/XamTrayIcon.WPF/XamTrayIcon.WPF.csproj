@@ -38,12 +38,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DesktopTrayIcon.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\src\packages\Plugin.DesktopTrayIcon.0.1.6\lib\net45\DesktopTrayIcon.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="DesktopTrayIcon.Net45, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\src\packages\Plugin.DesktopTrayIcon.0.1.6\lib\net45\DesktopTrayIcon.Net45.dll</HintPath>
-    </Reference>
     <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <HintPath>..\..\src\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
       <Private>True</Private>
@@ -156,6 +150,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\DesktopTrayIcon.Abstractions\DesktopTrayIcon.Abstractions.csproj">
+      <Project>{b4eb4289-694e-4d75-a0d2-1ca64d0ac510}</Project>
+      <Name>DesktopTrayIcon.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\DesktopTrayIcon.Net45\DesktopTrayIcon.Net45.csproj">
+      <Project>{b10f8612-59f3-48c5-8799-398efbebe592}</Project>
+      <Name>DesktopTrayIcon.Net45</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamTrayIcon\XamTrayIcon.Core.csproj">
       <Project>{9270924B-C438-4503-88F3-2E80C27D86FD}</Project>
       <Name>XamTrayIcon.Core</Name>
