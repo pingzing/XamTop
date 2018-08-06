@@ -94,7 +94,7 @@ namespace DesktopTrayIcon
             _trayIcon.ContextMenuStrip.Hide();
 
             // The status tray sometimes holds onto stale icons until they're moused over, so let's force it to clear.
-            Win32Interop.RefreshTrayArea(); 
+            PlatformInterop.RefreshTrayArea(); 
         }
     }
 }
