@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace DesktopTrayIcon
 {
     // Keeping this around, because I'd really like to figure out a way to hook into the host application's OnClose somehow, and run RefreshTrayArea.
-    internal static class Win32Interop
+    internal static class PlatformInterop
     {
         private const uint WM_MOUSEMOVE = 0x0200;
 

@@ -3,9 +3,9 @@ using DesktopTrayIcon.Abstractions;
 
 namespace DesktopTrayIcon
 {
-    public class TrayIcon
+    public static class TrayIcon
     {
-        private static Lazy<ITrayIcon> implementation = new Lazy<ITrayIcon>(() => CreateTrayIcon(), System.Threading.LazyThreadSafetyMode.PublicationOnly);
+        private static Lazy<ITrayIcon> implementation = new Lazy<ITrayIcon>(CreateTrayIcon, System.Threading.LazyThreadSafetyMode.PublicationOnly);
 
         public static ITrayIcon Current
         {
