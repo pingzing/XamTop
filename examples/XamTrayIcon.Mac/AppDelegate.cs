@@ -1,4 +1,5 @@
 ﻿using AppKit;
+using ContextMenu;
 using DesktopTrayIcon;
 using Foundation;
 using Xamarin.Forms;
@@ -24,6 +25,7 @@ namespace XamTrayIcon.Mac
             Forms.Init();
             var app = new Core.App();
             app.TrayIcon = new TrayIconImplementation();
+            app.ContextMenu = new ContextMenuImplementation();
             app.InitPlugins();
             LoadApplication(app);
             base.DidFinishLaunching(notification);

@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using ContextMenu.Abstractions;
 using DesktopTrayIcon;
 using DesktopTrayIcon.Abstractions;
 using Xamarin.Forms;
@@ -11,6 +12,7 @@ namespace XamTrayIcon.Core
     public partial class App : Application
     {
         public ITrayIcon TrayIcon { get; set; }
+        public IContextMenu ContextMenu { get; set; }
 
         public App ()
         {
@@ -37,7 +39,9 @@ namespace XamTrayIcon.Core
             };
             TrayIcon.TrayTooltip = "XamTrayIcon";
             TrayIcon.Show();
-            //TrayIcon.Click += Current_Click;
+            TrayIcon.Click += Current_Click;
+
+            
         }
 
         private void Current_Click(object sender, EventArgs e)

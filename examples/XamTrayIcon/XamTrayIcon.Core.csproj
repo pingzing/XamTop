@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\ContextMenu\ContextMenu.csproj" />
     <ProjectReference Include="..\..\src\DesktopTrayIcon\DesktopTrayIcon.csproj" />
   </ItemGroup>
 </Project>
