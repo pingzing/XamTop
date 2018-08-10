@@ -40,7 +40,18 @@ namespace ContextMenu
 
         private IPlatformContextMenu _platformContextMenu;
 
-        IList<IContextMenuItem> _itemsSource;
+        private string _label;
+        public string Label
+        {
+            get => _label;
+            set
+            {
+                _label = value;
+                _platformContextMenu.SetLabel(value);
+            }
+        }
+
+        private IList<IContextMenuItem> _itemsSource;
         public IEnumerable<IContextMenuItem> ItemsSource
         {
             get => _itemsSource;

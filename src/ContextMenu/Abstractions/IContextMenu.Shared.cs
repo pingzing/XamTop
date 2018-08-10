@@ -4,8 +4,9 @@ using System.Text;
 
 namespace ContextMenu.Abstractions
 {
-    public interface IContextMenu
-    {
+    public interface IContextMenu : IContextMenuItem
+    {        
+        string Label { get; set; }
         IEnumerable<IContextMenuItem> ItemsSource { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace XamTrayIcon.Core
     public partial class MainPage : ContentPage
     {
         private ObservableCollection<IContextMenuItem> _items = new ObservableCollection<IContextMenuItem>();
+        private ObservableCollection<IContextMenuItem> _subItems1 = new ObservableCollection<IContextMenuItem>();
 
         public MainPage()
         {
@@ -29,6 +30,16 @@ namespace XamTrayIcon.Core
             _items.Move(1, 0);
             _items.Add(new ContextMenuButton { Label = "Test3" });
             _items.RemoveAt(2);
+
+            var menu = new ContextMenu.ContextMenu();
+            menu.ItemsSource = _subItems1;
+            _items.Add(menu);
+            _subItems1.Add(new ContextMenuButton { Label = "SubItem 1" });
+            _subItems1.Add(new ContextMenuButton { Label = "SubItem 2" });
+            _subItems1.Add(new ContextMenuButton { Label = "SubItem 3" });
+            _subItems1.Move(2, 1);
+
+            _items.Add(new ContextMenuButton { Label = "Test4" });
         }
 
         public void ShowIconButton_Clicked(object sender, EventArgs e)
