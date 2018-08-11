@@ -3,7 +3,7 @@
   <PropertyGroup>
     <!--Target WPF and MacOS -->
     <TargetFrameworks>netstandard1.0;netstandard2.0;net45;Xamarin.Mac20</TargetFrameworks>
-
+    
     <AssemblyName>XamTop.DesktopTrayIcon</AssemblyName>
     <RootNamespace>XamTop.DesktopTrayIcon</RootNamespace>
 
@@ -11,11 +11,9 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     
     <!--Bundle debugging symbols into the resulting dll and nuget package.-->
-    <AllowedOutputxtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputxtensionsInPackageBuildOutputFolder>
+    <AllowedOutputxtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputxtensionsInPackageBuildOutputFolder>       
     
-    <!--Nuget build info-->
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <!--Nuget build info-->        
     <Authors>PingZing</Authors>
     <Company />
     <Copyright>Neil McAlister</Copyright>
@@ -42,7 +40,7 @@
     <Compile Include="**\*.Shared.cs" />
     
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
-    <PackageReference Include="XamTop.ContextMenu" Version="(0.1.0.0, 1.0.0.0)" />
+    <PackageReference Include="XamTop.ContextMenu" Version="[0.1.0.0, 1.0.0.0)" />  
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('net45')) ">
