@@ -51,10 +51,6 @@
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
     <Compile Include="**\*.Mac.cs" />
     <Reference Include="netstandard" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\XamTop.ContextMenu\XamTop.ContextMenu.csproj" />
   </ItemGroup>    
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
