@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XamTrayIcon"
-             x:Class="XamTrayIcon.Core.MainPage">
+             x:Class="XamTrayIcon.Core.MainPage"
+             
+             xmlns:trayIcon="clr-namespace:XamTop.TrayIcon.Xaml;assembly=XamTop.TrayIcon.Xaml">
+
+    <ContentPage.Resources>
+        
+    </ContentPage.Resources>
 
     <StackLayout>
         <!-- Place new controls here -->

@@ -99,11 +99,11 @@
     <InterfaceDefinition Include="MainMenu.xib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ContextMenu\XamTop.ContextMenu.csproj">
+    <ProjectReference Include="..\..\src\XamTop.ContextMenu\XamTop.ContextMenu.csproj">
       <Project>{d335f96b-99f9-4d0a-99ca-57e6fe0c1d05}</Project>
       <Name>XamTop.ContextMenu</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\DesktopTrayIcon\XamTop.DesktopTrayIcon.csproj">
+    <ProjectReference Include="..\..\src\XamTop.DesktopTrayIcon\XamTop.DesktopTrayIcon.csproj">
       <Project>{7e19acdf-131a-45f1-bb3f-6d70f5afd1d8}</Project>
       <Name>XamTop.DesktopTrayIcon</Name>
     </ProjectReference>

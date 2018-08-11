@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamTop.DesktopTrayIcon", "DesktopTrayIcon\XamTop.DesktopTrayIcon.csproj", "{7E19ACDF-131A-45F1-BB3F-6D70F5AFD1D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamTop.DesktopTrayIcon", "XamTop.DesktopTrayIcon\XamTop.DesktopTrayIcon.csproj", "{7E19ACDF-131A-45F1-BB3F-6D70F5AFD1D8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamTrayIcon.Core", "..\examples\XamTrayIcon\XamTrayIcon.Core.csproj", "{9270924B-C438-4503-88F3-2E80C27D86FD}"
 EndProject
@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamTrayIcon.Mac", "..\examples\XamTrayIcon.Mac\XamTrayIcon.Mac.csproj", "{763250FC-24C9-4AA2-A6E6-A326D65E1A8F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamTop.ContextMenu", "ContextMenu\XamTop.ContextMenu.csproj", "{D335F96B-99F9-4D0A-99CA-57E6FE0C1D05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamTop.ContextMenu", "XamTop.ContextMenu\XamTop.ContextMenu.csproj", "{D335F96B-99F9-4D0A-99CA-57E6FE0C1D05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

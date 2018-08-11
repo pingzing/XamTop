@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ContextMenu\XamTop.ContextMenu.csproj" />
-    <ProjectReference Include="..\..\src\DesktopTrayIcon\XamTop.DesktopTrayIcon.csproj" />
+    <ProjectReference Include="..\..\src\XamTop.ContextMenu\XamTop.ContextMenu.csproj" />
+    <ProjectReference Include="..\..\src\XamTop.DesktopTrayIcon\XamTop.DesktopTrayIcon.csproj" />
   </ItemGroup>
 </Project>
