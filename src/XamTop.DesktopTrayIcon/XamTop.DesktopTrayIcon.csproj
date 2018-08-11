@@ -42,7 +42,7 @@
     <Compile Include="**\*.Shared.cs" />
     
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
-    <PackageReference Include="XamTop.ContextMenu" Version="(0.1.*, 1.*)" />
+    <PackageReference Include="XamTop.ContextMenu" Version="0.1.*" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('net45')) ">
