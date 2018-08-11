@@ -15,7 +15,7 @@
     
     <!--Nuget build info-->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.9</Version>
+    <Version>0.1.0</Version>
     <Authors>PingZing</Authors>
     <Company />
     <Copyright>Neil McAlister</Copyright>
@@ -42,7 +42,7 @@
     <Compile Include="**\*.Shared.cs" />
     
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
-    <PackageReference Include="XamTop.ContextMenu" Version="0.1.*" />
+    <PackageReference Include="XamTop.ContextMenu" Version="(0.1.0.0, 1.0.0.0)" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('net45')) ">
