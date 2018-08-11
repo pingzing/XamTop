@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ContextMenu.Abstractions;
-using DesktopTrayIcon.Abstractions;
 using Xamarin.Forms;
+using XamTop.ContextMenu;
+using XamTop.ContextMenu.Abstractions;
 
 namespace XamTrayIcon.Core
 {
@@ -15,6 +10,7 @@ namespace XamTrayIcon.Core
     {
         private ObservableCollection<IContextMenuItem> _items = new ObservableCollection<IContextMenuItem>();
         private ObservableCollection<IContextMenuItem> _subItems1 = new ObservableCollection<IContextMenuItem>();
+        private ObservableCollection<IContextMenuItem> _subItems2 = new ObservableCollection<IContextMenuItem>();
 
         public MainPage()
         {
@@ -31,15 +27,25 @@ namespace XamTrayIcon.Core
             _items.Add(new ContextMenuButton { Label = "Test3" });
             _items.RemoveAt(2);
 
-            var menu = new ContextMenu.ContextMenu();
+            var menu = new ContextMenuFacade { Label = "SubMenu" };
             menu.ItemsSource = _subItems1;
             _items.Add(menu);
+
             _subItems1.Add(new ContextMenuButton { Label = "SubItem 1" });
             _subItems1.Add(new ContextMenuButton { Label = "SubItem 2" });
             _subItems1.Add(new ContextMenuButton { Label = "SubItem 3" });
             _subItems1.Move(2, 1);
 
             _items.Add(new ContextMenuButton { Label = "Test4" });
+
+            _subItems1.RemoveAt(2);
+
+            var subSubMenu = new ContextMenuFacade { Label = "SubMenu 2: Electric Boogaloo" };
+            subSubMenu.ItemsSource = _subItems2;
+            _subItems1.Add(subSubMenu);
+
+            _subItems2.Add(new ContextMenuButton { Label = "SubSubItem 1" });
+            ((App)App.Current).TrayIcon.ContextMenu = ((App)App.Current).ContextMenu;
         }
 
         public void ShowIconButton_Clicked(object sender, EventArgs e)

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using ContextMenu.Abstractions;
+using XamTop.ContextMenu.Abstractions;
 using System.Collections.Specialized;
 using System.Linq;
 
-namespace ContextMenu
+namespace XamTop.ContextMenu
 {
-    public class ContextMenu : IContextMenu
+    public class ContextMenuFacade : IContextMenu
     {
         private static Lazy<IContextMenu> implementation = new Lazy<IContextMenu>(CreateContextMenu, System.Threading.LazyThreadSafetyMode.PublicationOnly);
 
@@ -28,7 +28,7 @@ namespace ContextMenu
 #if NETSTANDARD1_0 || NETSTANDARD2_0
             return null;
 #else
-            return new ContextMenu();
+            return new ContextMenuFacade();
 #endif
         }
 
@@ -38,7 +38,7 @@ namespace ContextMenu
                 "You should reference the NuGet package from your main application project in order to reference the platform-specific implementation.");
         }
 
-        private IPlatformContextMenu _platformContextMenu;
+        public IPlatformContextMenu PlatformContextMenu { get; private set; }        
 
         private string _label;
         public string Label
@@ -47,7 +47,7 @@ namespace ContextMenu
             set
             {
                 _label = value;
-                _platformContextMenu.SetLabel(value);
+                PlatformContextMenu.SetLabel(value);
             }
         }
 
@@ -67,12 +67,12 @@ namespace ContextMenu
             }
         }
 
-        public ContextMenu()
+        public ContextMenuFacade()
         {
 #if NETSTANDARD1_0 || NETSTANDARD2_0
             throw NotImplementedInReferenceAssembly();
 #else
-            _platformContextMenu = new PlatformContextMenu();
+            PlatformContextMenu = new PlatformContextMenu();
 #endif
         }
 
@@ -93,7 +93,7 @@ namespace ContextMenu
                         foreach (IContextMenuItem newItem in e.NewItems.Cast<IContextMenuItem>())
                         {
                             _itemsSource.Insert(i, newItem);
-                            _platformContextMenu.AddToUnderlying(i, newItem);
+                            PlatformContextMenu.AddToUnderlying(i, newItem);
                             i++;
                         }
                     }
@@ -109,7 +109,7 @@ namespace ContextMenu
                             _itemsSource.Remove(abstractionItem);
                             _itemsSource.Insert(newIndex, abstractionItem);
 
-                            _platformContextMenu.MoveInUnderlying(oldIndex, newIndex);
+                            PlatformContextMenu.MoveInUnderlying(oldIndex, newIndex);
 
                             oldIndex++;
                             newIndex++;
@@ -124,7 +124,7 @@ namespace ContextMenu
                         {
                             _itemsSource.RemoveAt(i);
 
-                            _platformContextMenu.RemoveFromUnderlying(i);
+                            PlatformContextMenu.RemoveFromUnderlying(i);
 
                             i++;
                         }
@@ -137,7 +137,7 @@ namespace ContextMenu
                         foreach (var removed in e.OldItems)
                         {
                             _itemsSource.RemoveAt(i);
-                            _platformContextMenu.RemoveFromUnderlying(i);
+                            PlatformContextMenu.RemoveFromUnderlying(i);
                             i++;
                         }
                     }
@@ -148,14 +148,14 @@ namespace ContextMenu
                         foreach (var added in e.NewItems.Cast<IContextMenuItem>())
                         {
                             _itemsSource.Insert(i, added);
-                            _platformContextMenu.AddToUnderlying(i, added);
+                            PlatformContextMenu.AddToUnderlying(i, added);
                             i++;
                         }
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     _itemsSource.Clear();
-                    _platformContextMenu.ClearUnderlying();
+                    PlatformContextMenu.ClearUnderlying();
                     break;
             }
         }

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using AppKit;
-using System.Collections.Immutable;
-using System.Linq;
-using DesktopTrayIcon.Abstractions;
+using XamTop.ContextMenu;
+using XamTop.ContextMenu.Abstractions;
+using XamTop.DesktopTrayIcon.Abstractions;
 
-namespace DesktopTrayIcon
+namespace XamTop.DesktopTrayIcon
 {
     public class TrayIconImplementation : ITrayIcon
     {
@@ -19,10 +18,10 @@ namespace DesktopTrayIcon
         }
 
         private string _iconPath;
-        public string IconPath 
+        public string IconPath
         {
             get => _iconPath;
-            set 
+            set
             {
                 _iconPath = value;
                 NSImage icon = NSImage.ImageNamed(value);
@@ -32,53 +31,29 @@ namespace DesktopTrayIcon
             }
         }
 
-        public string TrayTooltip 
+        public string TrayTooltip
         {
             get => _trayIcon.Button.ToolTip;
             set => _trayIcon.Button.ToolTip = value;
         }
-
-        private ImmutableList<ITrayMenuItem> _contextMenuItems = ImmutableList.Create<ITrayMenuItem>();
-        public IReadOnlyList<ITrayMenuItem> ContextMenuItems 
+        
+        private ContextMenuFacade _contextMenu;
+        public IContextMenu ContextMenu
         {
-            get => _contextMenuItems;
-            set 
+            get => _contextMenu;
+            set
             {
-                _contextMenuItems = value.ToImmutableList();
-                if (value == null || value.Count == 0)
-                {
-                    _trayIcon.Menu = null;
-                    return;
-                }
-
-                NSMenu menu = new NSMenu();
-                var nsMenuItems = value.Select(x =>
-                {
-                    switch (x)
-                    {
-                        case ITrayMenuButton button:
-                            return new NSMenuItem(button.Label, button.Clicked);
-                        case ITrayMenuSeparator separator:
-                            return NSMenuItem.SeparatorItem;
-                        default: return null;
-                    }
-                })
-                .Where(x => x != null);
-                foreach (var item in nsMenuItems)
-                {
-                    menu.AddItem(item);
-                }
-
-                _trayIcon.Menu = menu;
+                _contextMenu = (ContextMenuFacade)value;
+                _trayIcon.Menu = ((PlatformContextMenu)_contextMenu.PlatformContextMenu).UnderlyingMenu;
             }
         }
 
-        public event EventHandler Click 
+        public event EventHandler Click
         {
             add { _trayIcon.Button.Activated += value; }
             remove { _trayIcon.Button.Activated -= value; }
         }
-        
+
         public void Show()
         {
             _trayIcon.Visible = true;
@@ -90,9 +65,9 @@ namespace DesktopTrayIcon
             _trayIcon.Visible = false;
             _trayIcon.Length = 0;
         }
-        
+
         public void ShowContextMenu()
-        { 
+        {
             _trayIcon.PopUpStatusItemMenu(_trayIcon.Menu);
         }
 

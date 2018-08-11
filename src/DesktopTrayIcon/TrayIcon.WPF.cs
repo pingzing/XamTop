@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using DesktopTrayIcon.Abstractions;
+using XamTop.ContextMenu;
+using XamTop.ContextMenu.Abstractions;
+using XamTop.DesktopTrayIcon.Abstractions;
 
-namespace DesktopTrayIcon
+namespace XamTop.DesktopTrayIcon
 {
     public class TrayIconImplementation : ITrayIcon
     {
@@ -38,32 +37,14 @@ namespace DesktopTrayIcon
             }
         }
 
-        private IImmutableList<ITrayMenuItem> _contextMenuItems = ImmutableList.Create<ITrayMenuItem>();
-        public IReadOnlyList<ITrayMenuItem> ContextMenuItems
+        private ContextMenuFacade _contextMenu;
+        public IContextMenu ContextMenu
         {
-            get => _contextMenuItems;
+            get => _contextMenu;
             set
             {
-                _contextMenuItems = value.ToImmutableList();
-                _trayIcon.ContextMenuStrip.Items.Clear();
-                if (value != null && value.Count > 0)
-                {
-                    _trayIcon.ContextMenuStrip.Items
-                        .AddRange(value.Select<ITrayMenuItem, ToolStripItem>(x => 
-                        {
-                            switch (x)
-                            {
-                                case ITrayMenuButton button:
-                                    return new ToolStripMenuItem(button.Label, null, button.Clicked);
-                                case ITrayMenuSeparator separator:
-                                    return new ToolStripSeparator();
-                                default:
-                                    return null;
-                            }
-                        })
-                        .Where(x => x != null)
-                        .ToArray());
-                }
+                _contextMenu = (ContextMenu.ContextMenuFacade)value;
+                _trayIcon.ContextMenuStrip = ((PlatformContextMenu)_contextMenu.PlatformContextMenu).UnderlyingContextMenu;
             }
         }
 
@@ -78,7 +59,7 @@ namespace DesktopTrayIcon
         }
 
         // We're sneaking in and using the internal show method, because the public methods require more ceremony than is really necessary for our use case
-        private MethodInfo _internalShowMethod;        
+        private MethodInfo _internalShowMethod;
 
         public void ShowContextMenu()
         {
@@ -94,7 +75,7 @@ namespace DesktopTrayIcon
             _trayIcon.ContextMenuStrip.Hide();
 
             // The status tray sometimes holds onto stale icons until they're moused over, so let's force it to clear.
-            PlatformInterop.RefreshTrayArea(); 
+            PlatformInterop.RefreshTrayArea();
         }
     }
 }

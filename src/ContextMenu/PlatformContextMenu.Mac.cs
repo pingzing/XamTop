@@ -1,21 +1,21 @@
 ﻿using System;
 using AppKit;
-using ContextMenu.Abstractions;
+using XamTop.ContextMenu.Abstractions;
 
-namespace ContextMenu
+namespace XamTop.ContextMenu
 {
     public class PlatformContextMenu : IPlatformContextMenu
     {
-        private NSMenu _underlyingMenu = new NSMenu();
+        public NSMenu UnderlyingMenu { get; private set; } = new NSMenu();
 
         public void AddToUnderlying(int i, IContextMenuItem newItem)
         {
-            AddToUnderlyingSpecific(_underlyingMenu, i, newItem);
+            AddToUnderlyingSpecific(UnderlyingMenu, i, newItem);
         }
 
         private void AddToUnderlyingSpecific(NSMenu menu, nint i, IContextMenuItem newItem)
         {
-            _underlyingMenu.InsertItem(ToConcreteMenuItem(newItem), i);
+            UnderlyingMenu.InsertItem(ToConcreteMenuItem(newItem), i);
             if (newItem is IContextMenu subMenu)
             {
                 NSMenu platformSubMenu = new NSMenu();
@@ -29,24 +29,24 @@ namespace ContextMenu
 
         public void ClearUnderlying()
         {
-            _underlyingMenu.RemoveAllItems();
+            UnderlyingMenu.RemoveAllItems();
         }
 
         public void MoveInUnderlying(int oldIndex, int newIndex)
         {
-            NSMenuItem item = _underlyingMenu.ItemAt(oldIndex);
-            _underlyingMenu.RemoveItem(item);
-            _underlyingMenu.InsertItem(item, newIndex);
+            NSMenuItem item = UnderlyingMenu.ItemAt(oldIndex);
+            UnderlyingMenu.RemoveItem(item);
+            UnderlyingMenu.InsertItem(item, newIndex);
         }
 
         public void RemoveFromUnderlying(int i)
         {
-            _underlyingMenu.RemoveItemAt(i);
+            UnderlyingMenu.RemoveItemAt(i);
         }
 
         public void SetLabel(string label)
         {
-            _underlyingMenu.Title = label;
+            UnderlyingMenu.Title = label;
         }
 
         private NSMenuItem ToConcreteMenuItem(IContextMenuItem item)

@@ -1,12 +1,11 @@
 using System;
 using System.Diagnostics;
-using ContextMenu.Abstractions;
-using DesktopTrayIcon;
-using DesktopTrayIcon.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamTop.ContextMenu.Abstractions;
+using XamTop.DesktopTrayIcon.Abstractions;
 
-[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamTrayIcon.Core
 {
     public partial class App : Application
@@ -31,17 +30,9 @@ namespace XamTrayIcon.Core
             {
                 TrayIcon.IconPath = "TrayIcon";
             }
-
-            TrayIcon.ContextMenuItems = new ITrayMenuItem[]
-            {
-                new TrayMenuButton { Label = "Show debug message", Clicked = (o, s) => Debug.WriteLine("Debug message!") },
-                new TrayMenuButton { Label = "Close", Clicked = (o2, s2) => Debug.WriteLine("I'll implement close later.") }
-            };
             TrayIcon.TrayTooltip = "XamTrayIcon";
             TrayIcon.Show();
-            TrayIcon.Click += Current_Click;
-
-            
+            TrayIcon.Click += Current_Click;            
         }
 
         private void Current_Click(object sender, EventArgs e)

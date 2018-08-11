@@ -1,6 +1,6 @@
-﻿namespace ContextMenu.Abstractions
+﻿namespace XamTop.ContextMenu.Abstractions
 {
-    internal interface IPlatformContextMenu
+    public interface IPlatformContextMenu
     {        
         void AddToUnderlying(int i, IContextMenuItem newItem);
         void ClearUnderlying();

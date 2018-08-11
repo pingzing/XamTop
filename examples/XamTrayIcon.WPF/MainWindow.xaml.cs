@@ -10,8 +10,8 @@ namespace XamTrayIcon.WPF
             InitializeComponent();
             Forms.Init();
             var app = new Core.App();
-            app.TrayIcon = new DesktopTrayIcon.TrayIconImplementation();
-            app.ContextMenu = new ContextMenu.ContextMenu();
+            app.TrayIcon = new XamTop.DesktopTrayIcon.TrayIconImplementation();
+            app.ContextMenu = new XamTop.ContextMenu.ContextMenuFacade();
             app.InitPlugins();
             LoadApplication(app);
         }

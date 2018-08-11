@@ -1,7 +1,7 @@
 ﻿using System;
-using DesktopTrayIcon.Abstractions;
+using XamTop.DesktopTrayIcon.Abstractions;
 
-namespace DesktopTrayIcon
+namespace XamTop.DesktopTrayIcon
 {
     public static class TrayIcon
     {

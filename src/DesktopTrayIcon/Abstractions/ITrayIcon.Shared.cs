@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using XamTop.ContextMenu.Abstractions;
 
-namespace DesktopTrayIcon.Abstractions
+namespace XamTop.DesktopTrayIcon.Abstractions
 {
     public interface ITrayIcon
     {
@@ -42,9 +42,8 @@ namespace DesktopTrayIcon.Abstractions
         void HideContextMenu();
 
         /// <summary>
-        /// List of context menu items that appear when the tray icon is right-clicked.
-        /// Replace the list with a new instance to change the items.
+        /// Context menu that appears when the tray icon is right-clicked.
         /// </summary>
-        IReadOnlyList<ITrayMenuItem> ContextMenuItems { get; set; }
+        IContextMenu ContextMenu { get; set; }
     }
 }

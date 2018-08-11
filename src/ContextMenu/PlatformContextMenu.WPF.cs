@@ -1,38 +1,57 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
-using ContextMenu.Abstractions;
+using XamTop.ContextMenu.Abstractions;
 
-namespace ContextMenu
+namespace XamTop.ContextMenu
 {
-    internal class PlatformContextMenu : IPlatformContextMenu
+    public class PlatformContextMenu : IPlatformContextMenu
     {
-        private ContextMenuStrip _underlyingContextMenu = new ContextMenuStrip();        
+        public ToolStripMenuItem ParentItem { get; set; }
+        public ContextMenuStrip UnderlyingContextMenu { get; private set; } = new ContextMenuStrip();
 
-        void IPlatformContextMenu.AddToUnderlying(int i, IContextMenuItem newItem)
-        {            
-            _underlyingContextMenu.Items.Insert(i, ToConcreteContextItem(newItem));
+        public void AddToUnderlying(int i, IContextMenuItem newItem)
+        {
+            UnderlyingContextMenu.Items.Insert(i, ToConcreteContextItem(newItem));
+            if (ParentItem != null)
+            {
+                ParentItem.DropDownItems.Insert(i, ToConcreteContextItem(newItem));
+            }
         }
 
-        void IPlatformContextMenu.ClearUnderlying()
+        public void ClearUnderlying()
         {
-            _underlyingContextMenu.Items.Clear();            
+            UnderlyingContextMenu.Items.Clear();
+            if (ParentItem != null)
+            {
+                ParentItem.DropDownItems.Clear();
+            }
         }
 
-        void IPlatformContextMenu.MoveInUnderlying(int oldIndex, int newIndex)
+        public void MoveInUnderlying(int oldIndex, int newIndex)
         {
-            ToolStripItem item = _underlyingContextMenu.Items[oldIndex];
-            _underlyingContextMenu.Items.Remove(item);
-            _underlyingContextMenu.Items.Insert(newIndex, item);
+            ToolStripItem item = UnderlyingContextMenu.Items[oldIndex];
+            UnderlyingContextMenu.Items.Remove(item);
+            UnderlyingContextMenu.Items.Insert(newIndex, item);
+            if (ParentItem != null)
+            {
+                ToolStripItem subItem = ParentItem.DropDownItems[oldIndex];
+                ParentItem.DropDownItems.Remove(subItem);
+                ParentItem.DropDownItems.Insert(newIndex, subItem);
+            }
         }
 
-        void IPlatformContextMenu.RemoveFromUnderlying(int i)
+        public void RemoveFromUnderlying(int i)
         {
-            _underlyingContextMenu.Items.RemoveAt(i);
+            UnderlyingContextMenu.Items.RemoveAt(i);
+            if (ParentItem != null)
+            {
+                ParentItem.DropDownItems.RemoveAt(i);
+            }
         }
 
         public void SetLabel(string label)
         {
-            _underlyingContextMenu.Text = label;
+            UnderlyingContextMenu.Text = label;
         }
 
         private ToolStripItem ToConcreteContextItem(IContextMenuItem item)
@@ -44,9 +63,11 @@ namespace ContextMenu
                 case IContextMenuSeparator separator:
                     return new ToolStripSeparator();
                 case IContextMenu menu:
-                    var convertedSubItems = menu.ItemsSource.Select(ToConcreteContextItem);
-                    var subMenu = new ToolStripMenuItem();
+                    var convertedSubItems = menu.ItemsSource.Select(ToConcreteContextItem);                    
+                    var subMenu = new ToolStripMenuItem(menu.Label);
                     subMenu.DropDownItems.AddRange(convertedSubItems.ToArray());
+                    PlatformContextMenu subMenuPlatformMenu = (PlatformContextMenu)((ContextMenuFacade)menu).PlatformContextMenu;
+                    subMenuPlatformMenu.ParentItem = subMenu;
                     return subMenu;
                 default:
                     return null;

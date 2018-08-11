@@ -1,24 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!--Target WPF and MacOS -->
     <TargetFrameworks>netstandard1.0;netstandard2.0;net45;Xamarin.Mac20</TargetFrameworks>
 
-    <AssemblyName>ContextMenu</AssemblyName>
-    <RootNamespace>ContextMenu</RootNamespace>
+    <AssemblyName>XamTop.DesktopTrayIcon</AssemblyName>
+    <RootNamespace>XamTop.DesktopTrayIcon</RootNamespace>
 
     <!--Manually include files, rather than implicitly-->
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-
+    
     <!--Bundle debugging symbols into the resulting dll and nuget package.-->
     <AllowedOutputxtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputxtensionsInPackageBuildOutputFolder>
-
+    
     <!--Nuget build info-->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <Version>0.1.9</Version>
     <Authors>PingZing</Authors>
     <Company />
     <Copyright>Neil McAlister</Copyright>
-    <Description>Support library that allows defining a cross-platform context menu.</Description>
+    <Description>Add the ability to display a tray icon with a context menu to your Xamarin Forms application when targeting WPF or macOS!</Description>
     <PackageTags>xamarin, xamarin.forms, pcl, netstandard, xamarin.wpf, xamarin.mac, tray, trayicon, notification area, status tray</PackageTags>
   </PropertyGroup>
 
@@ -39,7 +40,7 @@
     <!--Show everything in the project folder even if it isn't being compiled at the moment-->
     <None Include="**\*.cs;**\*.xml;**\*.axml;**\*.png" Exclude="obj\**\*.*;bin\**\*.*;bin;obj" />
     <Compile Include="**\*.Shared.cs" />
-    <None Remove="Abstractions\ContextSubMenu.Shared.cs" />    
+    
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
     <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
   </ItemGroup>
@@ -54,6 +55,9 @@
     <Reference Include="netstandard" />
   </ItemGroup>
 
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+  <ItemGroup>
+    <ProjectReference Include="..\ContextMenu\XamTop.ContextMenu.csproj" />
+  </ItemGroup>    
 
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

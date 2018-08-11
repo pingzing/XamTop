@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ContextMenu.Abstractions
+namespace XamTop.ContextMenu.Abstractions
 {
     public interface IContextMenu : IContextMenuItem
     {        

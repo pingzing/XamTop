@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace DesktopTrayIcon
+namespace XamTop.DesktopTrayIcon
 {
     // Keeping this around, because I'd really like to figure out a way to hook into the host application's OnClose somehow, and run RefreshTrayArea.
     internal static class PlatformInterop
