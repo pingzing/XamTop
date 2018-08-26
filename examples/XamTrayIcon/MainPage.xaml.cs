@@ -27,7 +27,7 @@ namespace XamTrayIcon.Core
             _items.Add(new ContextMenuButton { Label = "Test3" });
             _items.RemoveAt(2);
 
-            var menu = new ContextMenuFacade { Label = "SubMenu" };
+            var menu = new ContextMenu { Label = "SubMenu" };
             menu.ItemsSource = _subItems1;
             _items.Add(menu);
 
@@ -40,7 +40,7 @@ namespace XamTrayIcon.Core
 
             _subItems1.RemoveAt(2);
 
-            var subSubMenu = new ContextMenuFacade { Label = "SubMenu 2: Electric Boogaloo" };
+            var subSubMenu = new ContextMenu { Label = "SubMenu 2: Electric Boogaloo" };
             subSubMenu.ItemsSource = _subItems2;
             _subItems1.Add(subSubMenu);
 

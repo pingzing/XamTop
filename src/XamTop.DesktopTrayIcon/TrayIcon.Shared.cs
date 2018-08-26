@@ -56,7 +56,7 @@ namespace XamTop.DesktopTrayIcon
         /// <summary>
         /// Context menu that appears when the tray icon is right-clicked.
         /// </summary>
-        IContextMenu ContextMenu
+        public IContextMenu ContextMenu
         {
             get => PlatformContextMenu;
             set => PlatformContextMenu = value;

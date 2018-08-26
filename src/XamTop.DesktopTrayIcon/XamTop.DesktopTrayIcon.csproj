@@ -15,7 +15,7 @@
     
     <!--Nuget build info-->        
     <Authors>PingZing</Authors>
-    <Version>0.2.0</Version>
+    <Version>0.2.1</Version>
     <Company />
     <Copyright>Neil McAlister</Copyright>
     <Description>Add the ability to display a tray icon with a context menu to your Xamarin Forms application when targeting WPF or macOS!</Description>
@@ -42,7 +42,7 @@
     <None Remove="NotImplementedInReferenceAssemblyException.Shared.cs" />
     
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
-    <PackageReference Include="XamTop.ContextMenu" Version="0.2.*" />  
+    <PackageReference Include="XamTop.ContextMenu" Version="0.2.0.1-beta" />  
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">

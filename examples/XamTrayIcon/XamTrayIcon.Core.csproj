@@ -6,10 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\XamTop.ContextMenu\XamTop.ContextMenu.csproj" />
-    <ProjectReference Include="..\..\src\XamTop.DesktopTrayIcon\XamTop.DesktopTrayIcon.csproj" />
+    <PackageReference Include="XamTop.DesktopTrayIcon" Version="0.2.0.3" />
   </ItemGroup>
 </Project>

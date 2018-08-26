@@ -1,6 +1,4 @@
 ﻿using AppKit;
-using ContextMenu;
-using DesktopTrayIcon;
 using Foundation;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.MacOS;

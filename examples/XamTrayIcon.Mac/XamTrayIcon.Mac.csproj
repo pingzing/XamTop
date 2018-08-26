@@ -72,11 +72,11 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\src\packages\Xamarin.Forms.3.1.0.697729\lib\Xamarin.Mac\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="XamTop.ContextMenu, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\src\packages\XamTop.ContextMenu.0.1.0.10\lib\xamarinmac20\XamTop.ContextMenu.dll</HintPath>
+    <Reference Include="XamTop.ContextMenu, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\src\packages\XamTop.ContextMenu.0.2.0.1\lib\xamarinmac20\XamTop.ContextMenu.dll</HintPath>
     </Reference>
-    <Reference Include="XamTop.DesktopTrayIcon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\src\packages\XamTop.DesktopTrayIcon.0.1.2.1\lib\xamarinmac20\XamTop.DesktopTrayIcon.dll</HintPath>
+    <Reference Include="XamTop.DesktopTrayIcon, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\src\packages\XamTop.DesktopTrayIcon.0.2.0.3-beta\lib\xamarinmac20\XamTop.DesktopTrayIcon.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

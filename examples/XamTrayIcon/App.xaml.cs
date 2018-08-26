@@ -2,16 +2,17 @@ using System;
 using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamTop.ContextMenu;
 using XamTop.ContextMenu.Abstractions;
-using XamTop.DesktopTrayIcon.Abstractions;
+using XamTop.DesktopTrayIcon;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamTrayIcon.Core
 {
     public partial class App : Application
     {
-        public ITrayIcon TrayIcon { get; set; }
-        public IContextMenu ContextMenu { get; set; }
+        public TrayIcon TrayIcon { get; set; } = new TrayIcon();
+        public IContextMenu ContextMenu { get; set; } = new ContextMenu();
 
         public App ()
         {
