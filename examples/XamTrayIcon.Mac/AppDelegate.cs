@@ -24,9 +24,6 @@ namespace XamTrayIcon.Mac
         {
             Forms.Init();
             var app = new Core.App();
-            app.TrayIcon = new TrayIconImplementation();
-            app.ContextMenu = new ContextMenu.ContextMenu();
-            app.InitPlugins();
             LoadApplication(app);
             base.DidFinishLaunching(notification);
         }

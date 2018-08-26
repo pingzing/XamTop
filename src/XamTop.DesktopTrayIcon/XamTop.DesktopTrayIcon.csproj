@@ -15,6 +15,7 @@
     
     <!--Nuget build info-->        
     <Authors>PingZing</Authors>
+    <Version>0.2.0</Version>
     <Company />
     <Copyright>Neil McAlister</Copyright>
     <Description>Add the ability to display a tray icon with a context menu to your Xamarin Forms application when targeting WPF or macOS!</Description>
@@ -38,9 +39,14 @@
     <!--Show everything in the project folder even if it isn't being compiled at the moment-->
     <None Include="**\*.cs;**\*.xml;**\*.axml;**\*.png" Exclude="obj\**\*.*;bin\**\*.*;bin;obj" />
     <Compile Include="**\*.Shared.cs" />
+    <None Remove="NotImplementedInReferenceAssemblyException.Shared.cs" />
     
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
-    <PackageReference Include="XamTop.ContextMenu" Version="0.1.*" />  
+    <PackageReference Include="XamTop.ContextMenu" Version="0.2.*" />  
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
+    <Compile Include="**\*.NetStandard.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('net45')) ">
@@ -51,7 +57,7 @@
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
     <Compile Include="**\*.Mac.cs" />
     <Reference Include="netstandard" />
-  </ItemGroup>    
+  </ItemGroup>  
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

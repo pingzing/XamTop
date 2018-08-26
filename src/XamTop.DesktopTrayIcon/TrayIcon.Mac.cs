@@ -1,16 +1,14 @@
 ﻿using System;
 using AppKit;
-using XamTop.ContextMenu;
 using XamTop.ContextMenu.Abstractions;
-using XamTop.DesktopTrayIcon.Abstractions;
 
 namespace XamTop.DesktopTrayIcon
 {
-    public class TrayIconImplementation : ITrayIcon
+    public partial class TrayIcon
     {
         private NSStatusItem _trayIcon;
 
-        public TrayIconImplementation()
+        public TrayIcon()
         {
             NSStatusBar bar = new NSStatusBar();
             _trayIcon = bar.CreateStatusItem(NSStatusItemLength.Square);
@@ -18,7 +16,7 @@ namespace XamTop.DesktopTrayIcon
         }
 
         private string _iconPath;
-        public string IconPath
+        public string PlatformIconPath
         {
             get => _iconPath;
             set
@@ -31,47 +29,47 @@ namespace XamTop.DesktopTrayIcon
             }
         }
 
-        public string TrayTooltip
+        public string PlatformTrayTooltip
         {
             get => _trayIcon.Button.ToolTip;
             set => _trayIcon.Button.ToolTip = value;
         }
         
-        private ContextMenuFacade _contextMenu;
-        public IContextMenu ContextMenu
+        private ContextMenu.ContextMenu _contextMenu;
+        public IContextMenu PlatformContextMenu
         {
             get => _contextMenu;
             set
             {
-                _contextMenu = (ContextMenuFacade)value;
-                _trayIcon.Menu = ((PlatformContextMenu)_contextMenu.PlatformContextMenu).UnderlyingMenu;
+                _contextMenu = (ContextMenu.ContextMenu)value;
+                _trayIcon.Menu = _contextMenu.UnderlyingContextMenu;
             }
         }
 
-        public event EventHandler Click
+        public event EventHandler PlatformClick
         {
             add { _trayIcon.Button.Activated += value; }
             remove { _trayIcon.Button.Activated -= value; }
         }
 
-        public void Show()
+        public void PlatformShow()
         {
             _trayIcon.Visible = true;
             _trayIcon.Length = new nfloat((int)NSStatusItemLength.Square);
         }
 
-        public void Hide()
+        public void PlatformHide()
         {
             _trayIcon.Visible = false;
             _trayIcon.Length = 0;
         }
 
-        public void ShowContextMenu()
+        public void PlatformShowContextMenu()
         {
             _trayIcon.PopUpStatusItemMenu(_trayIcon.Menu);
         }
 
-        public void HideContextMenu()
+        public void PlatformHideContextMenu()
         {
             _trayIcon.Menu.CancelTracking();
         }

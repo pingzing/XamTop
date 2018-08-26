@@ -14,7 +14,7 @@
 
     <!--Nuget build info-->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>PingZing</Authors>
     <Company />
     <Copyright>Neil McAlister</Copyright>
@@ -38,8 +38,12 @@
   <ItemGroup>
     <!--Show everything in the project folder even if it isn't being compiled at the moment-->
     <None Include="**\*.cs;**\*.xml;**\*.axml;**\*.png" Exclude="obj\**\*.*;bin\**\*.*;bin;obj" />
-    <Compile Include="**\*.Shared.cs" />    
+    <Compile Include="**\*.Shared.cs" />
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
+    <Compile Include="**\*.NetStandard.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('net45')) ">

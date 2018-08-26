@@ -1,38 +1,65 @@
 ﻿using System;
-using XamTop.DesktopTrayIcon.Abstractions;
+using XamTop.ContextMenu.Abstractions;
 
 namespace XamTop.DesktopTrayIcon
 {
-    public static class TrayIcon
+    public partial class TrayIcon
     {
-        private static Lazy<ITrayIcon> implementation = new Lazy<ITrayIcon>(CreateTrayIcon, System.Threading.LazyThreadSafetyMode.PublicationOnly);
-
-        public static ITrayIcon Current
+        /// <summary>
+        /// URI to icon to display in the system tray. Should lead to a .ico file on Windows, or
+        /// an image name in an Asset Bundle on macOS.
+        /// </summary>
+        public string IconPath
         {
-            get
-            {
-                var ret = implementation.Value;
-                if (ret == null)
-                {
-                    throw NotImplementedInReferenceAssembly();
-                }
-                return ret;
-            }
+            get => PlatformIconPath;
+            set => PlatformIconPath = value;
         }
 
-        private static ITrayIcon CreateTrayIcon()
+        /// <summary>
+        /// Tooltip to display when the user hovers over the tray icon.
+        /// </summary>
+        public string TrayTooltip
         {
-#if NETSTANDARD1_0 || NETSTANDARD2_0
-            return null;
-#else
-            return new TrayIconImplementation();
-#endif
+            get => PlatformTrayTooltip;
+            set => PlatformTrayTooltip = value;
         }
 
-        internal static Exception NotImplementedInReferenceAssembly()
+        /// <summary>
+        /// Occurs when the user clicks the tray icon.
+        /// </summary>
+        public event EventHandler Click
         {
-            return new NotImplementedException("This functionality is not implemented in the netstandard version of this assembly.  " +
-                "You should reference the NuGet package from your main application project in order to reference the platform-specific implementation.");
+            add => PlatformClick += value;
+            remove => PlatformClick -= value;
+        }
+
+        /// <summary>
+        /// Show the tray icon.
+        /// </summary>
+        public void Show() => PlatformShow();
+
+        /// <summary>
+        /// Hide the tray icon.
+        /// </summary>
+        public void Hide() => PlatformHide();
+
+        /// <summary>
+        /// Display the tray icon's context menu.
+        /// </summary>
+        public void ShowContextMenu() => PlatformShowContextMenu();
+
+        /// <summary>
+        /// Hide the tray icon's context menu.
+        /// </summary>
+        public void HideContextMenu() => PlatformHideContextMenu();
+
+        /// <summary>
+        /// Context menu that appears when the tray icon is right-clicked.
+        /// </summary>
+        IContextMenu ContextMenu
+        {
+            get => PlatformContextMenu;
+            set => PlatformContextMenu = value;
         }
     }
 }

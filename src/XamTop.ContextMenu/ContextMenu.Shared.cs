@@ -1,45 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using XamTop.ContextMenu.Abstractions;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using XamTop.ContextMenu.Abstractions;
 
 namespace XamTop.ContextMenu
 {
-    public class ContextMenuFacade : IContextMenu
+    public partial class ContextMenu : IContextMenu
     {
-        private static Lazy<IContextMenu> implementation = new Lazy<IContextMenu>(CreateContextMenu, System.Threading.LazyThreadSafetyMode.PublicationOnly);
-
-        public static IContextMenu Current
-        {
-            get
-            {
-                var ret = implementation.Value;
-                if (ret == null)
-                {
-                    throw NotImplementedInReferenceAssembly();
-                }
-                return ret;
-            }
-        }
-
-        private static IContextMenu CreateContextMenu()
-        {
-#if NETSTANDARD1_0 || NETSTANDARD2_0
-            return null;
-#else
-            return new ContextMenuFacade();
-#endif
-        }
-
-        internal static Exception NotImplementedInReferenceAssembly()
-        {
-            return new NotImplementedException("This functionality is not implemented in the netstandard version of this assembly.  " +
-                "You should reference the NuGet package from your main application project in order to reference the platform-specific implementation.");
-        }
-
-        public IPlatformContextMenu PlatformContextMenu { get; private set; }        
-
         private string _label;
         public string Label
         {
@@ -47,7 +14,7 @@ namespace XamTop.ContextMenu
             set
             {
                 _label = value;
-                PlatformContextMenu.SetLabel(value);
+                PlatformSetLabel(value);
             }
         }
 
@@ -67,15 +34,6 @@ namespace XamTop.ContextMenu
             }
         }
 
-        public ContextMenuFacade()
-        {
-#if NETSTANDARD1_0 || NETSTANDARD2_0
-            throw NotImplementedInReferenceAssembly();
-#else
-            PlatformContextMenu = new PlatformContextMenu();
-#endif
-        }
-
         private void HookupListEvents(INotifyCollectionChanged itemsSource)
         {
             itemsSource.CollectionChanged -= ContextItems_CollectionChanged;
@@ -93,7 +51,7 @@ namespace XamTop.ContextMenu
                         foreach (IContextMenuItem newItem in e.NewItems.Cast<IContextMenuItem>())
                         {
                             _itemsSource.Insert(i, newItem);
-                            PlatformContextMenu.AddToUnderlying(i, newItem);
+                            PlatformAdd(i, newItem);
                             i++;
                         }
                     }
@@ -109,7 +67,7 @@ namespace XamTop.ContextMenu
                             _itemsSource.Remove(abstractionItem);
                             _itemsSource.Insert(newIndex, abstractionItem);
 
-                            PlatformContextMenu.MoveInUnderlying(oldIndex, newIndex);
+                            PlatformMove(oldIndex, newIndex);
 
                             oldIndex++;
                             newIndex++;
@@ -124,7 +82,7 @@ namespace XamTop.ContextMenu
                         {
                             _itemsSource.RemoveAt(i);
 
-                            PlatformContextMenu.RemoveFromUnderlying(i);
+                            PlatformRemove(i);
 
                             i++;
                         }
@@ -137,7 +95,7 @@ namespace XamTop.ContextMenu
                         foreach (var removed in e.OldItems)
                         {
                             _itemsSource.RemoveAt(i);
-                            PlatformContextMenu.RemoveFromUnderlying(i);
+                            PlatformRemove(i);
                             i++;
                         }
                     }
@@ -148,14 +106,14 @@ namespace XamTop.ContextMenu
                         foreach (var added in e.NewItems.Cast<IContextMenuItem>())
                         {
                             _itemsSource.Insert(i, added);
-                            PlatformContextMenu.AddToUnderlying(i, added);
+                            PlatformAdd(i, added);
                             i++;
                         }
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     _itemsSource.Clear();
-                    PlatformContextMenu.ClearUnderlying();
+                    PlatformClear();
                     break;
             }
         }

@@ -1,33 +1,31 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows.Forms;
-using XamTop.ContextMenu;
 using XamTop.ContextMenu.Abstractions;
-using XamTop.DesktopTrayIcon.Abstractions;
 
 namespace XamTop.DesktopTrayIcon
 {
-    public class TrayIconImplementation : ITrayIcon
+    public partial class TrayIcon
     {
         private NotifyIcon _trayIcon = new NotifyIcon
         {
             ContextMenuStrip = new ContextMenuStrip()
         };
 
-        public event EventHandler Click
+        public event EventHandler PlatformClick
         {
             add { _trayIcon.Click += value; }
             remove { _trayIcon.Click -= value; }
         }
 
-        public string TrayTooltip
+        public string PlatformTrayTooltip
         {
             get => _trayIcon.Text;
             set => _trayIcon.Text = value;
         }
 
         private string _iconUri;
-        public string IconPath
+        public string PlatformIconPath
         {
             get => _iconUri;
             set
@@ -37,31 +35,30 @@ namespace XamTop.DesktopTrayIcon
             }
         }
 
-        private ContextMenuFacade _contextMenu;
-        public IContextMenu ContextMenu
+        private ContextMenu.ContextMenu _contextMenu;
+        public IContextMenu PlatformContextMenu
         {
             get => _contextMenu;
             set
             {
-                _contextMenu = (ContextMenu.ContextMenuFacade)value;
-                _trayIcon.ContextMenuStrip = ((PlatformContextMenu)_contextMenu.PlatformContextMenu).UnderlyingContextMenu;
+                _contextMenu = (ContextMenu.ContextMenu)value;
+                _trayIcon.ContextMenuStrip = _contextMenu.UnderlyingContextMenu;
             }
         }
 
-        public void Hide()
+        public void PlatformHide()
         {
             _trayIcon.Visible = false;
         }
 
-        public void Show()
+        public void PlatformShow()
         {
             _trayIcon.Visible = true;
         }
 
         // We're sneaking in and using the internal show method, because the public methods require more ceremony than is really necessary for our use case
         private MethodInfo _internalShowMethod;
-
-        public void ShowContextMenu()
+        public void PlatformShowContextMenu()
         {
             if (_internalShowMethod == null)
             {
@@ -70,7 +67,7 @@ namespace XamTop.DesktopTrayIcon
             _internalShowMethod.Invoke(_trayIcon, null);
         }
 
-        public void HideContextMenu()
+        public void PlatformHideContextMenu()
         {
             _trayIcon.ContextMenuStrip.Hide();
 

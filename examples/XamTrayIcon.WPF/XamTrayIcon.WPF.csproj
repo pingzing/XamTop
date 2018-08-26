@@ -97,6 +97,14 @@
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Xamarin.Forms.3.1.0.697729\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="XamTop.ContextMenu, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\src\packages\XamTop.ContextMenu.0.1.0.10\lib\net45\XamTop.ContextMenu.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XamTop.DesktopTrayIcon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\src\packages\XamTop.DesktopTrayIcon.0.1.2.1\lib\net45\XamTop.DesktopTrayIcon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -145,14 +153,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\XamTop.ContextMenu\XamTop.ContextMenu.csproj">
-      <Project>{d335f96b-99f9-4d0a-99ca-57e6fe0c1d05}</Project>
-      <Name>XamTop.ContextMenu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\XamTop.DesktopTrayIcon\XamTop.DesktopTrayIcon.csproj">
-      <Project>{7e19acdf-131a-45f1-bb3f-6d70f5afd1d8}</Project>
-      <Name>XamTop.DesktopTrayIcon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\XamTrayIcon\XamTrayIcon.Core.csproj">
       <Project>{9270924B-C438-4503-88F3-2E80C27D86FD}</Project>
       <Name>XamTrayIcon.Core</Name>
