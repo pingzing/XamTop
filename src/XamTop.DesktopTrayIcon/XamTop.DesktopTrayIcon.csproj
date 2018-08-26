@@ -42,7 +42,7 @@
     <None Remove="NotImplementedInReferenceAssemblyException.Shared.cs" />
     
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
-    <PackageReference Include="XamTop.ContextMenu" Version="0.2.0.1-beta" />  
+    <PackageReference Include="XamTop.ContextMenu" Version="0.2.*" />  
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
